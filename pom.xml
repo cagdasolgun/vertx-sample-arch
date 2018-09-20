@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.hepsiburada.mpop</groupId>
+	<artifactId>verx-mpop</artifactId>
+	<version>3.5.3</version>
+
+	<properties>
+		<!-- the main class -->
+		<vertx.verticle>com.hb.mpop.vertx.Application</vertx.verticle>
+		<vertx.plugin.version>1.0.17</vertx.plugin.version>
+	</properties>
+
+	<dependencies>
+		<!-- vertx -->
+		<dependency>
+			<groupId>com.englishtown.vertx</groupId>
+			<artifactId>vertx-jersey</artifactId>
+			<version>4.7.0</version>
+		</dependency>
+		<dependency>
+			<groupId>io.atomix.vertx</groupId>
+			<artifactId>atomix-vertx</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.englishtown.vertx</groupId>
+			<artifactId>vertx-hk2</artifactId>
+			<version>2.5.0</version>
+		</dependency>
+		<!-- // -->
+
+		<!-- feign -->
+		<dependency>
+			<groupId>io.github.openfeign</groupId>
+			<artifactId>feign-vertx</artifactId>
+			<version>0.0.1</version>
+		</dependency>
+
+
+		<!-- jackson -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+			<version>2.9.6</version>
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish.jersey.media</groupId>
+			<artifactId>jersey-media-json-jackson</artifactId>
+			<version>2.27</version>
+		</dependency>
+
+		<!-- consul -->
+		<dependency>
+			<groupId>io.vertx</groupId>
+			<artifactId>vertx-consul-client</artifactId>
+			<version>3.5.3</version>
+		</dependency>
+		<dependency>
+			<groupId>io.vertx</groupId>
+			<artifactId>vertx-service-discovery</artifactId>
+			<version>3.5.3</version>
+		</dependency>
+		<dependency>
+			<groupId>io.vertx</groupId>
+			<artifactId>vertx-service-discovery-bridge-consul</artifactId>
+			<version>3.5.3</version>
+		</dependency>
+
+		<!-- logging -->
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>1.0.13</version>
+		</dependency>
+		<!-- -->
+
+		<!-- testing -->
+		<dependency>
+			<groupId>io.vertx</groupId>
+			<artifactId>vertx-unit</artifactId>
+			<version>3.5.3</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- -->
+
+	</dependencies>
+	<build>
+		<finalName>sample-arch</finalName>
+
+		<sourceDirectory>src</sourceDirectory>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.7.0</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>io.reactiverse</groupId>
+				<artifactId>vertx-maven-plugin</artifactId>
+				<version>${vertx.plugin.version}</version>
+				<executions>
+					<execution>
+						<id>vmp</id>
+						<goals>
+							<goal>initialize</goal>
+							<goal>package</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<redeploy>true</redeploy>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<repositories>
+		<repository>
+			<id>jcenter</id>
+			<url>https://jcenter.bintray.com/</url>
+		</repository>
+	</repositories>
+
+</project>
